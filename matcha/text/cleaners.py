@@ -25,9 +25,10 @@ critical_logger.setLevel(logging.CRITICAL)
 # now the phonemizer is not initialising at every call
 # Might be less flexible, but it is much-much faster
 global_phonemizer = phonemizer.backend.EspeakBackend(
-    language="en-us",
+    language="es",
     preserve_punctuation=True,
     with_stress=True,
+    punctuation_marks = ';:,.!?¡¿—…"«»“”()',
     language_switch="remove-flags",
     logger=critical_logger,
 )
@@ -102,4 +103,11 @@ def english_cleaners2(text):
     text = expand_abbreviations(text)
     phonemes = global_phonemizer.phonemize([text], strip=True, njobs=1)[0]
     phonemes = collapse_whitespace(phonemes)
+    return phonemes
+
+def spanish_cleaners(text):
+    """Pipeline for Spanish text."""
+    phonemes = global_phonemizer.phonemize([text], strip=True, njobs=1)[0]
+    phonemes = collapse_whitespace(phonemes)
+    phonemes = phonemes.strip()
     return phonemes
