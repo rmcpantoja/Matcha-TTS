@@ -1,11 +1,11 @@
 _target_: matcha.data.text_mel_datamodule.TextMelDataModule
 name: ljspeech
-train_filelist_path: data/filelists/ljs_audio_text_train_filelist.txt
-valid_filelist_path: data/filelists/ljs_audio_text_val_filelist.txt
-batch_size: 32
-num_workers: 20
+train_filelist_path: data/filelists/list.txt
+valid_filelist_path: data/filelists/list.txt
+batch_size: 16
+num_workers: 2
 pin_memory: True
-cleaners: [english_cleaners2]
+cleaners: [spanish_cleaners]
 add_blank: True
 n_spks: 1
 n_fft: 1024
